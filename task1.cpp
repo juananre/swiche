@@ -4,9 +4,9 @@
 static void switchVariables(uint32_t *pdata, uint32_t *pdata2)
 {
     uint32_t prueba;
-    *pdata2 = prueba;
-    *pdata = *pdata2;
     prueba = *pdata;
+    *pdata = *pdata2;
+    *pdata2 = prueba;
 }
 
 static void printVar(const char *varName, uint32_t value)
