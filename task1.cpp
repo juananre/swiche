@@ -1,9 +1,12 @@
 #include <Arduino.h>
 #include "task1.h"
 
-static void switchVariables(uint32_t *pdata){
-    // ?
-    *pdata =41;
+static void switchVariables(uint32_t *pdata, uint32_t *pdata2)
+{
+    uint32_t prueba;
+    *pdata2 = prueba;
+    *pdata = *pdata2;
+    prueba = *pdata;
 }
 
 static void printVar(const char *varName, uint32_t value)
@@ -34,17 +37,16 @@ void task1()
         // evento 1:
         if (Serial.available() > 0)
         {
-            Serial.read();
-            uint32_t a = 10;
-            uint32_t *pvar =&a;
-            uint32_t b = 20;
-            uint32_t *pvar2 =&b;
-            printVar("a", a);
-            printVar("b", b);
-            switchVariables(pvar);
-            switchVariables(pvar2);
-            printVar("a", a);
-            printVar("b", b);
+            int datarx = Serial.read();
+
+                uint32_t a = 10;
+                uint32_t b = 20;
+                printVar("a", a);
+                printVar("b", b);
+                switchVariables(&a, &b);
+                printVar("a", a);
+                printVar("b", b);
+
         }
         break;
     }
